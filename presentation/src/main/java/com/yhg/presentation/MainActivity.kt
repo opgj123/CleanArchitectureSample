@@ -1,4 +1,4 @@
-package com.yhg.cleanarchitecturesample
+package com.yhg.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
