@@ -1,5 +1,6 @@
 package com.yhg.presentation.viewmodel
 
+import android.util.Log
 import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
 import androidx.lifecycle.SavedStateHandle
@@ -23,6 +24,9 @@ class MainViewModel @Inject constructor(
     private val insertMemoUseCase: InsertMemoUseCase,
     private val savedStateHandle: SavedStateHandle
 ) : ViewModel(){
+
+    val memoId = savedStateHandle.getLiveData("memo_id", -1)
+
     val statusText = ObservableField("Hi! text in Local DB")
 
     val noDataNotification = ObservableBoolean(false)
@@ -30,10 +34,11 @@ class MainViewModel @Inject constructor(
     fun insertMemo(title: String, content: String){
         val simpleDate = SimpleDateFormat("yyyy-MM-dd HH:mm")
         val strNow: String = simpleDate.format(Date(System.currentTimeMillis()))
+        val memoItem = MemoItem(null, title, content, strNow)
+        Log.d("LOGD", "memoItem : $memoItem")
         CoroutineScope(IO).launch {
-            insertMemoUseCase.execute(MemoItem(null, title, content, strNow))
+            insertMemoUseCase.execute(memoItem)
         }
-        statusText.set("'$content' is inserted.")
     }
 
     fun getAllMemos() = getAllAllMemoUseCase.execute().flowOn(IO)
