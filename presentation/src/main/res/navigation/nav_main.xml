@@ -11,4 +11,14 @@
         android:name="com.yhg.presentation.fragment.MainFragment"
         tools:layout="@layout/fragment_main"/>
 
+    <fragment
+        android:id="@+id/frg_memo"
+        android:name="com.yhg.presentation.fragment.MemoFragment"
+        tools:layout="@layout/fragment_memo"/>
+
+    <action
+        android:id="@+id/action_frg_memo"
+        app:destination="@+id/frg_memo"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"/>
 </navigation>

@@ -13,6 +13,8 @@ import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -26,8 +28,10 @@ class MainViewModel @Inject constructor(
     val noDataNotification = ObservableBoolean(false)
 
     fun insertMemo(title: String, content: String){
+        val simpleDate = SimpleDateFormat("yyyy-MM-dd HH:mm")
+        val strNow: String = simpleDate.format(Date(System.currentTimeMillis()))
         CoroutineScope(IO).launch {
-            insertMemoUseCase.execute(MemoItem(null, title, content))
+            insertMemoUseCase.execute(MemoItem(null, title, content, strNow))
         }
         statusText.set("'$content' is inserted.")
     }

@@ -8,5 +8,6 @@ data class MemoEntity(
     @PrimaryKey(autoGenerate = true)
     val id:Long?,
     val title: String,
-    val content: String
+    val content: String,
+    val time: String
 )

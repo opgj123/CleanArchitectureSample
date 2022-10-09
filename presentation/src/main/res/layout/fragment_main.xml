@@ -9,13 +9,16 @@
         android:background="#EEEAC4"
         tools:context=".fragment.MainFragment">
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvMemo"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="vertical"
             android:padding="16dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             tools:itemCount="5"
-            tools:listitem="@layout/fragment_main"/>
+            tools:listitem="@layout/item_memo_list_detail"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btn_add"
