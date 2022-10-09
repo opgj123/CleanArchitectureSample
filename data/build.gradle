@@ -17,6 +17,7 @@ dependencies {
     implementation(AndroidX.APP_COMPAT)
 
     implementation(Google.HILT_ANDROID)
+    testImplementation 'junit:junit:4.12'
     kapt          (Google.HILT_ANDROID_COMPILER)
 
     implementation(AndroidX.ROOM_KTX)

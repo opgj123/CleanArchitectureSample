@@ -2,6 +2,7 @@ package com.yhg.presentation.viewmodel
 
 import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.yhg.domain.model.MemoItem
 import com.yhg.domain.usecase.GetAllMemoUseCase
@@ -17,7 +18,8 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val getAllAllMemoUseCase: GetAllMemoUseCase,
-    private val insertMemoUseCase: InsertMemoUseCase
+    private val insertMemoUseCase: InsertMemoUseCase,
+    private val savedStateHandle: SavedStateHandle
 ) : ViewModel(){
     val statusText = ObservableField("Hi! text in Local DB")
 
