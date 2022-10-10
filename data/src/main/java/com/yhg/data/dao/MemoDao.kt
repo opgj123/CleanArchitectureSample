@@ -1,9 +1,6 @@
 package com.yhg.data.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.yhg.data.model.MemoEntity
 import kotlinx.coroutines.flow.Flow
 
@@ -14,4 +11,7 @@ interface MemoDao {
 
     @Query("SELECT * FROM memo ORDER BY id DESC")
     fun getAllMemo(): Flow<List<MemoEntity>>
+
+    @Delete
+    fun deleteMemo(memo: MemoEntity)
 }

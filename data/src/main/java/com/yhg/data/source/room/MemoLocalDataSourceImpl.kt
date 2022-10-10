@@ -9,5 +9,7 @@ class MemoLocalDataSourceImpl @Inject constructor(private val memoDao: MemoDao):
 
     override suspend fun insertMemo(content: MemoEntity): Long = memoDao.insertMemo(content)
 
+    override suspend fun deleteMemo(content: MemoEntity) = memoDao.deleteMemo(content)
+
     override fun getAllMemo(): Flow<List<MemoEntity>> = memoDao.getAllMemo()
 }

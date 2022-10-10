@@ -28,6 +28,7 @@ class MemoListAdapter(private val itemClickListener: (memoItem:MemoItem) -> Unit
     class MemoListViewHolder(private val binding: ItemMemoListDetailBinding, val onClickItemListener: (MemoItem) -> Unit) : RecyclerView.ViewHolder(binding.root){
         private val tvTitle: TextView = binding.tvTitle
         private val tvDay: TextView = binding.tvDay
+        private val tvTime: TextView = binding.tvTime
         private var currentItem: MemoItem? = null
 
         init{
@@ -41,7 +42,9 @@ class MemoListAdapter(private val itemClickListener: (memoItem:MemoItem) -> Unit
         fun bind(item: MemoItem){
             currentItem = item
             tvTitle.text = item.title
-            tvDay.text = item.time
+            val timeArray = item.time.split(",")
+            tvDay.text = timeArray[0]
+            tvTime.text = timeArray[1]
         }
     }
 }

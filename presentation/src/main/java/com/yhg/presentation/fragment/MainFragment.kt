@@ -23,8 +23,8 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
 
     override fun initObjectSetting() {
         memoListAdapter = MemoListAdapter { memoItem ->
-            val bundle = bundleOf("memo_id" to memoItem.id)
-            findNavController().navigate(R.id.action_frg_memo, bundle)
+            mainViewModel.setMemoId(memoItem)
+            findNavController().navigate(R.id.action_frg_memo)
         }
     }
 

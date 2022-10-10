@@ -18,14 +18,15 @@
                 android:layout_height="match_parent">
                 <TextView
                     android:id="@+id/tv_title"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="안녕하세요"
                     android:layout_marginStart="10dp"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/lv_date"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"/>
                 <LinearLayout
+                    android:id="@+id/lv_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -36,13 +37,11 @@
                     <TextView
                         android:id="@+id/tv_day"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="22.10.07 금"/>
+                        android:layout_height="wrap_content"/>
                     <TextView
                         android:id="@+id/tv_time"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="오후 06:46"/>
+                        android:layout_height="wrap_content"/>
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
