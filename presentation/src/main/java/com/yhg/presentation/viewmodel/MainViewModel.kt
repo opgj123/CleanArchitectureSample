@@ -37,7 +37,7 @@ class MainViewModel @Inject constructor(
     val memoData: LiveData<Event<MemoItem>> get() = _memoData
 
     fun insertMemo(title: String, content: String){
-        val simpleDate = SimpleDateFormat("yy.MM.dd EEE, a HH:mm", Locale.KOREAN)
+        val simpleDate = SimpleDateFormat("yy.MM.dd EEE, a KK:mm", Locale.KOREAN)
         val strNow: String = simpleDate.format(Date(System.currentTimeMillis()))
         val memoItem = MemoItem(null, title, content, strNow)
         CoroutineScope(IO).launch {
