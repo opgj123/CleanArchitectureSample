@@ -7,4 +7,5 @@ interface MemoRepository {
     fun getAllMemo(): Flow<List<MemoItem>>
     suspend fun insertMemo(memo: MemoItem): Long
     suspend fun deleteMemo(memo: MemoItem)
+    suspend fun updateMemo(memo: MemoItem)
 }

@@ -14,6 +14,8 @@ import com.yhg.presentation.R
 import com.yhg.presentation.base.BaseFragment
 import com.yhg.presentation.databinding.FragmentMemoBinding
 import com.yhg.presentation.utils.EventObserver
+import com.yhg.presentation.utils.QueryType
+import com.yhg.presentation.utils.Utils
 import com.yhg.presentation.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -43,7 +45,11 @@ class MemoFragment : BaseFragment<FragmentMemoBinding>(R.layout.fragment_memo) {
                     if(memoItem?.title == title.trim() && memoItem?.content == content.trim())
                         findNavController().navigateUp()
                     else{
-
+                        memoItem?.apply {
+                            this.title = title
+                            this.content = content
+                        }
+                        mainViewModel.updateMemo(memoItem!!)
                     }
                 // 새로 만들기
                 }else{
@@ -75,7 +81,11 @@ class MemoFragment : BaseFragment<FragmentMemoBinding>(R.layout.fragment_memo) {
         })
 
         mainViewModel.memoConfirmText.observe(viewLifecycleOwner, EventObserver{
-            val text = if(it == "save") "메모가 저장되었습니다." else "메모가 삭제되었습니다."
+            val text = when(it){
+                QueryType.INSERT -> "메모가 저장되었습니다."
+                QueryType.UPDATE -> "메모가 수정되었습니다."
+                QueryType.DELETE -> "메모가 삭제되었습니다."
+            }
             Toast.makeText(requireContext(), text, Toast.LENGTH_LONG).show()
             findNavController().navigateUp()
         })

@@ -4,6 +4,7 @@ import com.yhg.domain.repository.MemoRepository
 import com.yhg.domain.usecase.DeleteMemoUseCase
 import com.yhg.domain.usecase.GetAllMemoUseCase
 import com.yhg.domain.usecase.InsertMemoUseCase
+import com.yhg.domain.usecase.UpdateMemoUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,4 +25,8 @@ object UseCaseModule {
     @Provides
     fun providesDeleteMemoUseCase(repository: MemoRepository): DeleteMemoUseCase =
         DeleteMemoUseCase(repository)
+
+    @Provides
+    fun providesUpdateMemoUseCase(repository: MemoRepository): UpdateMemoUseCase =
+        UpdateMemoUseCase(repository)
 }

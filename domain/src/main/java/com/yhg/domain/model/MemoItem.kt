@@ -2,7 +2,7 @@ package com.yhg.domain.model
 
 data class MemoItem (
     var id: Long?,
-    val title: String,
-    val content: String,
+    var title: String,
+    var content: String,
     val time: String
 )

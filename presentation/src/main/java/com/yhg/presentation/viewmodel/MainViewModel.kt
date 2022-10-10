@@ -8,7 +8,9 @@ import com.yhg.domain.model.MemoItem
 import com.yhg.domain.usecase.DeleteMemoUseCase
 import com.yhg.domain.usecase.GetAllMemoUseCase
 import com.yhg.domain.usecase.InsertMemoUseCase
+import com.yhg.domain.usecase.UpdateMemoUseCase
 import com.yhg.presentation.utils.Event
+import com.yhg.presentation.utils.QueryType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
@@ -25,11 +27,11 @@ class MainViewModel @Inject constructor(
     private val getAllMemoUseCase: GetAllMemoUseCase,
     private val insertMemoUseCase: InsertMemoUseCase,
     private val deleteMemoUseCase: DeleteMemoUseCase,
-    private val savedStateHandle: SavedStateHandle
+    private val updateMemoUseCase: UpdateMemoUseCase
 ) : ViewModel(){
 
-    private val _memoConfirmText = MutableLiveData<Event<String>>()
-    val memoConfirmText : LiveData<Event<String>> get() = _memoConfirmText
+    private val _memoConfirmText = MutableLiveData<Event<QueryType>>()
+    val memoConfirmText : LiveData<Event<QueryType>> get() = _memoConfirmText
 
     private val _memoData = MutableLiveData<Event<MemoItem>>()
     val memoData: LiveData<Event<MemoItem>> get() = _memoData
@@ -41,14 +43,21 @@ class MainViewModel @Inject constructor(
         CoroutineScope(IO).launch {
             insertMemoUseCase.execute(memoItem)
         }
-        _memoConfirmText.value = Event("save")
+        _memoConfirmText.value = Event(QueryType.INSERT)
     }
 
     fun deleteMemo(item: MemoItem){
         CoroutineScope(IO).launch {
             deleteMemoUseCase.execute(item)
         }
-        _memoConfirmText.value = Event("delete")
+        _memoConfirmText.value = Event(QueryType.DELETE)
+    }
+
+    fun updateMemo(item: MemoItem){
+        CoroutineScope(IO).launch {
+            updateMemoUseCase.execute(item)
+        }
+        _memoConfirmText.value = Event(QueryType.UPDATE)
     }
 
     fun getAllMemos() = getAllMemoUseCase.execute().flowOn(IO).catch{e: Throwable -> }

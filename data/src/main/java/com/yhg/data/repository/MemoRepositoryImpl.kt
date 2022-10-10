@@ -16,4 +16,5 @@ class MemoRepositoryImpl @Inject constructor(private val memoLocalDataSource: Me
 
     override suspend fun deleteMemo(memo: MemoItem) = memoLocalDataSource.deleteMemo(memo.map())
 
+    override suspend fun updateMemo(memo: MemoItem) = memoLocalDataSource.updateMemo(memo.map())
 }

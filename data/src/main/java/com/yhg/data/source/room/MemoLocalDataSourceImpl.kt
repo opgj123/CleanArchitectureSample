@@ -11,5 +11,7 @@ class MemoLocalDataSourceImpl @Inject constructor(private val memoDao: MemoDao):
 
     override suspend fun deleteMemo(content: MemoEntity) = memoDao.deleteMemo(content)
 
+    override suspend fun updateMemo(content: MemoEntity) = memoDao.updateMemo(content)
+
     override fun getAllMemo(): Flow<List<MemoEntity>> = memoDao.getAllMemo()
 }
